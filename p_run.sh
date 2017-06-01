@@ -14,7 +14,9 @@ MAX_RULE=$3
 
 for D in `ls $FOLDER`;
 do
-    screen -d -m bash -c "./run.sh $SYSTEM $FOLDER/$D $MAX_RULE 2> $D/err > $D/out"
+    echo "screen -d -m bash -c \"./run.sh $SYSTEM $FOLDER/$D $MAX_RULE\""
+    screen -d -m bash -c "./run.sh $SYSTEM $FOLDER/$D $MAX_RULE"
     echo "RUN $D"
-    `sleep 5`
+    `sleep 2`
 done
+
