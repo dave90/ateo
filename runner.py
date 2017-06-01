@@ -32,7 +32,7 @@ def runSystem(system, encoding, instances, directory):
             time = float(mo.group(1))
             break
     file.close()
-    os.system("rm %s" % errorfile)
+#    os.system("rm %s" % errorfile)
     return time
 
 

@@ -43,7 +43,7 @@ def getAnnotateEncodings(encoding, hard_rules):
     return encodings
 
 
-def runDir(dir, o_dir, idlv):
+def runDir(dir, o_dir):
     print("Generate encodings for: %s" % dir)
     os.system("rm -rf %s/%s*" % (o_dir, analytic.ENCODING))
     hard_rules = []
@@ -53,10 +53,12 @@ def runDir(dir, o_dir, idlv):
     file.close()
     with open (dir+"/"+analytic.ENCODING, "r") as myfile:
         encoding = myfile.read()
-        encoding = re.sub(r'#.+\.', '', encoding)
+        encoding = re.sub(r'#show.+\.', '', encoding)
+        encoding = re.sub(r'%\n', '', encoding)
         encoding = re.sub(r'%.+\n', '', encoding)
         encoding = encoding.replace("\n", "")
         encoding = encoding.replace(".", ".\n")
+        encoding = re.sub(r'\.\n\s+(\[.+\])', r'. \g<1>\n', encoding)
         encodings = getAnnotateEncodings(encoding, hard_rules)
         i = 0
         for e in encodings:
@@ -66,7 +68,7 @@ def runDir(dir, o_dir, idlv):
             i += 1
 
 
-def main(idlv, directory):
+def main(directory):
     directoies = []
     for dir in os.listdir(directory):
         directoies.append(directory+dir)
@@ -76,16 +78,15 @@ def main(idlv, directory):
         dir_out[dir] =  dir +"/" + checkDir(dir)
 
     for k in dir_out:
-        runDir(k, dir_out[k], idlv)
+        runDir(k, dir_out[k])
 
 
 
 
 
 if __name__ == "__main__":
-    idlv = sys.argv[1]
-    folder = sys.argv[2]
+    folder = sys.argv[1]
     if folder[-1] != '/':
         folder += '/'
-    main(idlv, folder)
+    main(folder)
 

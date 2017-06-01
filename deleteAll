@@ -2,6 +2,5 @@
 
 if [ "$#" -ne 1 ]; then
     echo "Illegal number of parameters"
-    exit 0
 fi
-rm -rf $1/*/.out*
+rm -rf $1/*/*/.out*

@@ -40,7 +40,7 @@ def runSystemStat(system, encoding, instances, directory):
             i = mo.group(4)
             ruleStat[int(i)] = int(p)
     file.close()
-    os.system("rm %s" % errorfile)
+#    os.system("rm %s" % errorfile)
     return ruleStat
 
 def runDir(dir, idlv):
