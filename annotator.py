@@ -12,7 +12,13 @@ INSTANCES = analytic.INSTANCES
 
 annotations = [
     "%@rule_ordering(@value=4).",
-    "%@rule_ordering(@value=5)."
+    "%@rule_ordering(@value=5).",
+    "%@rule_projection(@value=0).",
+    "%@rule_rewriting_arith().",
+    "%@rule_projection(@value=0).\n%@rule_ordering(@value=4).",
+    "%@rule_projection(@value=0).\n%@rule_ordering(@value=5).",
+    "%@rule_rewriting_arith().\n%@rule_ordering(@value=4).",
+    "%@rule_rewriting_arith().\n%@rule_ordering(@value=5)."
 ]
 
 def checkDir(dir):
