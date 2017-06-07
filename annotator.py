@@ -60,8 +60,8 @@ def runDir(dir, o_dir):
     with open (dir+"/"+analytic.ENCODING, "r") as myfile:
         encoding = myfile.read()
         encoding = re.sub(r'#show.+\.', '', encoding)
-        encoding = re.sub(r'%\n', '', encoding)
         encoding = re.sub(r'%.+\n', '', encoding)
+        encoding = re.sub(r'%\n', '', encoding)
         encoding = encoding.replace("\n", "")
         encoding = encoding.replace(".", ".\n")
         encoding = re.sub(r'\.\n\s+(\[.+\])', r'. \g<1>\n', encoding)
